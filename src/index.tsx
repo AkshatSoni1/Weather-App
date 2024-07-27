@@ -3,13 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Navbar from './components/Navbar';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AppProvider } from './context/Context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
-    <App />
+    <AppProvider>
+      <QueryClientProvider client={queryClient}>
+      <Navbar />
+      <App />
+      </QueryClientProvider>
+    </AppProvider>
   </React.StrictMode>
 );
 
